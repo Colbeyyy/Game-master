@@ -17,6 +17,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+*.class
+*.log
+*.txt
+
 # =========================
 # Operating System Files
 # =========================
@@ -30,6 +34,8 @@ $RECYCLE.BIN/
 
 # Thumbnails
 ._*
+
+/bin
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
