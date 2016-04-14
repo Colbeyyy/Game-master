@@ -1,5 +1,6 @@
 package com.colbyclardy.game;
 
+import com.colbyclardy.game.graphics.Camera;
 import com.colbyclardy.game.graphics.Shader;
 import com.colbyclardy.game.graphics.Window;
 import com.colbyclardy.game.math.Matrix4f;
@@ -9,10 +10,12 @@ public class Game {
 
 	private Window window;
 	private GrassTile tile;
+	private Camera cam;
 
 	private void init() {
 		window = new Window();
 		tile = new GrassTile();
+		cam = new Camera();
 		Shader.loadAll();
 		
 		Matrix4f proj = Matrix4f.perspective(60, (float)window.getDimensions().x / window.getDimensions().y, 0.1f, 1000f);
@@ -26,6 +29,7 @@ public class Game {
 			window.clear();
 			tile.render();
 			tile.update();
+			cam.update();
 			window.update();
 		}
 	}
