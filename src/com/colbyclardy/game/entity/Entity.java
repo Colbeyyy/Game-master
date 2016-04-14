@@ -6,7 +6,7 @@ public class Entity {
 
 	public Vector3f position = new Vector3f();
 	
-	public float angle;
+	public Vector3f rotation = new Vector3f();
 	
 	public Entity() 
 	{

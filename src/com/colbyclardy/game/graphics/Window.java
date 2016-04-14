@@ -1,25 +1,6 @@
 package com.colbyclardy.game.graphics;
 
-import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
-import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
-import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
-import static org.lwjgl.glfw.GLFW.glfwInit;
-import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSetCursorPosCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
-import static org.lwjgl.glfw.GLFW.glfwShowWindow;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_NO_ERROR;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -37,6 +18,10 @@ public class Window {
 	private static int width;
 	private static int height;
 	private static String title;
+	
+	private boolean debug;
+	
+	private boolean debugButton;
 	
 	private GLFWKeyCallback keyCallback;
 	private GLFWCursorPosCallback mousePosCallback;
@@ -88,7 +73,7 @@ public class Window {
 		glEnable(GL_DEPTH_TEST);
 		//glDepthFunc()
 		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+		//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		glDepthFunc(GL_LESS);
 		
 		glClearColor(0.2f, 0.2f, 0.2f, 1);
@@ -102,6 +87,26 @@ public class Window {
 			System.out.println("OpenGL Error");
 		}
 		
+		if(Keyboard.isKeyDown(GLFW_KEY_F3))
+		{
+			if(!debugButton)
+			{
+				debugButton = true;
+				debug = !debug;
+				if(debug)
+				{
+					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+				}
+				else
+				{
+					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+				}
+			}
+		}
+		else
+		{
+			debugButton = false;
+		}
 		
 		glfwSwapBuffers(window);
 		

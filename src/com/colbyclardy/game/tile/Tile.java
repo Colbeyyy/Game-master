@@ -126,7 +126,7 @@ public class Tile {
 	public void render()
 	{
 		Shader.ENTITY.enable();
-		Shader.ENTITY.setUniformMat4f("ml_matrix", Matrix4f.translate(position).multiply(Matrix4f.rotate(rotation.x, new Vector3f(1, 0 , 0))).multiply(Matrix4f.rotate(rotation.y, new Vector3f(0, 1 , 0))));
+		Shader.ENTITY.setUniformMat4f("ml_matrix", Matrix4f.translate(position).multiply(Matrix4f.rotate(rotation.x, new Vector3f(1, 0 , 0))).multiply(Matrix4f.rotate(rotation.y, new Vector3f(0, 1 , 0)).multiply(Matrix4f.rotate(rotation.z, new Vector3f(0, 0, 1)))));
 		Shader.ENTITY.setUniform1f("alpha", 0.5f);
 		texture.bind();
 		mesh.render();

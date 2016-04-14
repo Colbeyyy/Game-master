@@ -32,6 +32,7 @@ public class Texture {
 	//tiles
 	public static Texture grass = new Texture("res/textures/tiles/grass.png");
 	public static Texture grass2 = new Texture("res/textures/tiles/grass2.png");
+	public static Texture dirt = new Texture("res/textures/tiles/dirt.png");
 	
 	//entities
 	
