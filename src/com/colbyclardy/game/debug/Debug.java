@@ -101,7 +101,7 @@ public class Debug {
 		DateFormat logFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date date = new Date();
 		try {
-			PrintWriter writer = new PrintWriter("log/end_game_log_" + dateFormat.format(date) + ".txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("log/end_game_log_" + dateFormat.format(date) + ".log", "UTF-8");
 			writer.println(Window.getTitle() + " Log - Dylan And Colby Games");
 			writer.println('\n');
 			writer.println("OpenGL: " + glGetString(GL_VERSION));
