@@ -11,7 +11,6 @@ public class GrassTile extends Tile{
 	
 	public void update()
 	{
-		
 		rotation.y += 0.05f;
 		rotation.z += 0.005f;
 		position.z = -5.5f;
