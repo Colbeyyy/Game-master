@@ -14,12 +14,12 @@ public class Camera {
 	public Vector3f position;
 	public Vector3f rotation;
 	
-	public float speed = 3f;
+	public float speed = 1f;
 	
 	private boolean inAir = false;
 	
-	private float gravity = -5f;
-	private float jumpPower = 7.5f;
+	private float gravity = -0.75f;
+	private float jumpPower = 1.5f;
 	
 	private float deltaSpeed;
 	
@@ -94,10 +94,10 @@ public class Camera {
 		
 		deltaSpeed += gravity * Game.timer.deltaTime;
 		position.y += deltaSpeed * Game.timer.deltaTime;
-		if(position.y < 5)
+		if(position.y < 2)
 		{
 			deltaSpeed = 0;
-			position.y = 5;
+			position.y = 2;
 			inAir = false;
 		}
 		

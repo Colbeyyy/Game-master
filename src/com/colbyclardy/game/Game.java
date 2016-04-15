@@ -17,6 +17,7 @@ public class Game {
 
 	private Window window;
 	private GrassTile tile;
+	private GrassTile tile2;
 	private Camera cam;
 	
 	private GrassTile tiles[];
@@ -28,16 +29,19 @@ public class Game {
 	private void init() {
 		window = new Window();
 		tile = new GrassTile();
+		tile2 = new GrassTile();
 		cam = new Camera();
 		timer = new Timer();
 		tiles = new GrassTile[64 * 64];
+		
+		tile2.position = new Vector3f(5, 1, 5);
 		
 		for(int y = 0; y < 64; y++)
 		{
 			for(int x = 0; x < 64; x++)
 			{
 				tiles[x + y * 64] = new GrassTile();
-				tiles[x + y * 64].position = new Vector3f(y * 2, 0, x * 2);
+				tiles[x + y * 64].position = new Vector3f(y, 0, x);
 			}
 		}
 		
@@ -51,19 +55,25 @@ public class Game {
 	public void run() {
 		while (window.closed()) {
 			timer.reset();
-			//tile.render();
 			//tile.update();
 			window.clear();
-			for(int y = 0; y < 4; y++)
+			for(int y = 0; y < 32; y++)
 			{
-				for(int x = 0; x < 4; x++)
+				for(int x = 0; x < 32; x++)
 				{
 					tiles[x + y * 64].render();
 				}
 			}
 			
-			//Debug.Print(timer.deltaTime + ", " + deltaTime);
+			tile2.render();
 			
+			//Debug.Print(timer.deltaTime + ", " + deltaTime);
+			float x = Math.round(cam.position.x);
+			float z = Math.round(cam.position.z);	
+			
+			
+			tile.position = new Vector3f(x,0,z);
+			tile.render();
 			
 			cam.update();
 			window.update();

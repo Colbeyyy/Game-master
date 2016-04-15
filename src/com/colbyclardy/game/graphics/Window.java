@@ -96,7 +96,7 @@ public class Window {
 		glDepthFunc(GL_LESS);
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
 		
-		glClearColor(0.2f, 0.2f, 0.2f, 1);
+		glClearColor(0.4f, 0.7f, 1f, 1f);
 	}
 	
 	public void update()
