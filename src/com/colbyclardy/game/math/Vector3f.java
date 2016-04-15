@@ -37,6 +37,13 @@ public class Vector3f {
 		return this;
 	}
 	
+	public void subtract(Vector3f other)
+	{
+		this.x -= other.x;
+		this.y -= other.y;
+		this.z -= other.z;
+	}
+	
 	public Vector3f multiplyF(float f)
 	{
 		this.x *= f;

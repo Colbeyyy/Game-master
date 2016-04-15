@@ -15,10 +15,6 @@ public class Sprite {
 
 	private float angle;
 
-	public static Sprite testHead = new Sprite(0.5f, new Texture("res/textures/entities/mobs/test/head1.png"));
-	public static Sprite testBody = new Sprite(2, new Texture("res/textures/entities/mobs/test/body1.png"));
-	public static Sprite logo = new Sprite(7.5f, new Texture("res/textures/intro/Logo2.png"));
-
 	public Sprite(float size, Texture texture) {
 		mesh = generateMesh(size);
 		this.texture = texture;

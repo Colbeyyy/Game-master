@@ -34,11 +34,6 @@ public class Texture {
 	public static Texture grass2 = new Texture("res/textures/tiles/grass2.png");
 	public static Texture dirt = new Texture("res/textures/tiles/dirt.png");
 	
-	//entities
-	
-	//gui
-	public static Texture ui = new Texture("res/textures/ui/ui.png");
-	
 	public Texture(String path) {
 		texture = loadFromFile(path);
 	}
