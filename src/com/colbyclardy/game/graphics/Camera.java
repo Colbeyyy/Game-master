@@ -1,11 +1,9 @@
 package com.colbyclardy.game.graphics;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_A;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_D;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
+import static org.lwjgl.glfw.GLFW.*;
 
 import com.colbyclardy.game.Game;
+import com.colbyclardy.game.debug.Debug;
 import com.colbyclardy.game.input.Keyboard;
 import com.colbyclardy.game.input.MouseInput;
 import com.colbyclardy.game.math.Matrix4f;
@@ -16,7 +14,16 @@ public class Camera {
 	public Vector3f position;
 	public Vector3f rotation;
 	
-	public float speed = 0.005f;
+	public float speed = 3f;
+	
+	private boolean inAir = false;
+	
+	private float gravity = -5f;
+	private float jumpPower = 7.5f;
+	
+	private float deltaSpeed;
+	
+	private boolean jumpButton;
 	
 	public Camera()
 	{
@@ -30,26 +37,43 @@ public class Camera {
 		//position.z += 0.005f;
 		if(Keyboard.isKeyDown(GLFW_KEY_W))
 		{
-			position.z -= (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed;
-			position.x += (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed;
+			position.z -= ((float) Math.cos(Math.toRadians(rotation.y % 360)) * speed) * Game.timer.deltaTime;
+			position.x += ((float) Math.sin(Math.toRadians(rotation.y % 360)) * speed) * Game.timer.deltaTime;
 		}
 		
 		if(Keyboard.isKeyDown(GLFW_KEY_A))
 		{
-			position.x -= (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed;
-			position.z -= (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed;
+			position.x -= (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed * Game.timer.deltaTime;
+			position.z -= (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed * Game.timer.deltaTime;
 		}
 		
 		if(Keyboard.isKeyDown(GLFW_KEY_S))
 		{
-			position.z += (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed;
-			position.x -= (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed;
+			position.z += (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed * Game.timer.deltaTime;
+			position.x -= (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed * Game.timer.deltaTime;
 		}
 		
 		if(Keyboard.isKeyDown(GLFW_KEY_D))
 		{
-			position.x += (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed;
-			position.z += (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed;
+			position.x += (float) Math.cos(Math.toRadians(rotation.y % 360)) * speed * Game.timer.deltaTime;
+			position.z += (float) Math.sin(Math.toRadians(rotation.y % 360)) * speed * Game.timer.deltaTime;
+		}
+		
+		if(Keyboard.isKeyDown(GLFW_KEY_SPACE))
+		{
+			if(!jumpButton)
+			{
+				jumpButton = true;
+				if(!inAir)
+				{
+					deltaSpeed += jumpPower;
+					inAir = true;
+				}
+			}
+		}
+		else
+		{
+			jumpButton = false;
 		}
 		
 		if(!Window.debug)
@@ -66,6 +90,15 @@ public class Camera {
 		if(rotation.x <= -80f)
 		{
 			rotation.x = -80f;
+		}
+		
+		deltaSpeed += gravity * Game.timer.deltaTime;
+		position.y += deltaSpeed * Game.timer.deltaTime;
+		if(position.y < 5)
+		{
+			deltaSpeed = 0;
+			position.y = 5;
+			inAir = false;
 		}
 		
 		//rotation.y += 0.05f;

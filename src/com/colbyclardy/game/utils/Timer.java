@@ -3,20 +3,22 @@ package com.colbyclardy.game.utils;
 public class Timer {
 
 	private long start;
+	public double deltaTime;
 	
 	public Timer()
 	{
-		start = System.currentTimeMillis();
+		start = System.nanoTime();
 	}
 	
 	public void reset()
 	{
-		start = System.currentTimeMillis();
+		start = System.nanoTime();
 	}
 	
-	public float elapsed()
+	public double elapsed()
 	{
-		return (float)((System.currentTimeMillis() - start) / 1000f);
+		deltaTime = ((System.nanoTime() - start) / 10000000D) * 0.06D;
+		return ((System.nanoTime() - start) / 10000000D) * 0.06D;
 	}
 	
 }

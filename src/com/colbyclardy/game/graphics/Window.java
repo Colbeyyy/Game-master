@@ -86,6 +86,7 @@ public class Window {
 		
 		glfwMakeContextCurrent(window);
 		glfwShowWindow(window);
+		//glfwSwapInterval(1);
 		GL.createCapabilities();
 		
 		glEnable(GL_DEPTH_TEST);
@@ -93,8 +94,6 @@ public class Window {
 		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		glDepthFunc(GL_LESS);
-		
-		Debug.Print((glfwJoystickPresent(GLFW_JOYSTICK_1) == GLFW_TRUE) + "");
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
 		
 		glClearColor(0.2f, 0.2f, 0.2f, 1);
