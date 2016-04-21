@@ -11,6 +11,40 @@ public class VertexArray {
 	private int vao, vbo, ibo, tbo;
 	private int count;
 	
+	public static VertexArray fontMesh = new VertexArray(
+				new float[] {
+	 				-1 / 2.0f, -1 / 2.0f, 0.2f,
+	 				-1 / 2.0f,  1 / 2.0f, 0.2f,
+	 				 1 / 2.0f,  1 / 2.0f, 0.2f,
+	 				 1 / 2.0f, -1 / 2.0f, 0.2f
+	 			},
+	 				
+	 			new byte[] {
+	 				0, 1, 2,
+	 				2, 3, 0
+	 			},
+	 			
+	 			new float[] {
+	 				0, 1,
+	 				0, 0,
+	 				1, 0,
+	 				1, 1
+	 			}
+			
+			);
+	
+	public static VertexArray createFontMesh(float size)
+	{
+		float[] vertices = new float[] { -size / 2.0f, -size / 2.0f, 0.2f, -size / 2.0f, size / 2.0f, 0.2f, size / 2.0f,
+				size / 2.0f, 0.2f, size / 2.0f, -size / 2.0f, 0.2f };
+
+		byte[] indices = new byte[] { 0, 1, 2, 2, 3, 0 };
+
+		float[] tcs = new float[] { 0, 1, 0, 0, 1, 0, 1, 1 };
+		
+		return new VertexArray(vertices, indices, tcs);
+	}
+	
 	public VertexArray(int count) {
 		this.count = count;
 		vao = glGenVertexArrays();

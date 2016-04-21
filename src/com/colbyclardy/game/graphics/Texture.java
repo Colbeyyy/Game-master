@@ -30,10 +30,16 @@ public class Texture {
 	private int x,y;
 	
 	//tiles
-	public static Texture grass = new Texture("res/textures/tiles/grass.png");
-	//public static Texture grass2 = new Texture("res/textures/spritesheet/spritesheet1.png");
-	public static Texture dirt = new Texture("res/textures/tiles/dirt.png");
-	public static Texture grass2 = new Texture(Spritesheet.sheet1, 16, 0, 0);
+	public static Texture grass;
+	public static Texture dirt;
+	public static Texture grass2;
+	
+	public static void loadAll()
+	{
+		grass = new Texture("res/textures/tiles/grass.png");
+		dirt = new Texture("res/textures/tiles/dirt.png");
+		grass2 = new Texture(Spritesheet.sheet1, 8, 0, 29);
+	}
 	
 	public Texture(String path) {
 		texture = loadFromFile(path);
@@ -70,6 +76,10 @@ public class Texture {
 			int b = (pixels[i] & 0xff);
 			
 			data[i] = a << 24 | b << 16 | g << 8 | r;
+			if(data[i] == 0xff000000)
+			{
+				data[i] = 0;
+			}
 		}
 		
 		int result = glGenTextures();

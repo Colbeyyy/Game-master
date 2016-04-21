@@ -6,7 +6,7 @@ public class GrassBlock extends Block{
 
 	public GrassBlock()
 	{
-		texture = Texture.grass2;
+		texture = Texture.dirt;
 	}
 	
 	public void update()

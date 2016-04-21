@@ -29,6 +29,8 @@ import com.colbyclardy.game.input.Keyboard;
 import com.colbyclardy.game.input.MouseInput;
 import com.colbyclardy.game.input.WindowResize;
 import com.colbyclardy.game.math.Vector2f;
+import com.colbyclardy.game.math.Vector3f;
+import com.colbyclardy.game.sprites.Spritesheet;
 
 public class Window {
 
@@ -39,10 +41,13 @@ public class Window {
 	public static boolean debug;
 	
 	private boolean debugButton;
+	private boolean reloadTextureButton;
 	
 	private GLFWKeyCallback keyCallback;
 	private GLFWCursorPosCallback mousePosCallback;
 	private GLFWWindowSizeCallback windowResize;
+	
+	private Font font;
 	
 	private long window;
 	
@@ -97,10 +102,18 @@ public class Window {
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
 		
 		glClearColor(0.4f, 0.7f, 1f, 1f);
+		font = new Font(Spritesheet.sheet1, new Vector3f(-0.725f, 0.35f, 0));
 	}
 	
 	public void update()
 	{
+		if(debug)
+		{
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			font.render("Paused", 0.1f);
+			
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		}
 		int error = glGetError();
 		if(error != GL_NO_ERROR)
 		{
@@ -130,9 +143,25 @@ public class Window {
 			debugButton = false;
 		}
 		
+		if(Keyboard.isKeyDown(GLFW_KEY_F2))
+		{
+			if(!reloadTextureButton)
+			{
+				reloadTextureButton = true;
+				Texture.loadAll();
+			}
+		}
+		else
+		{
+			reloadTextureButton = false;
+		}
+		
+		
 		MouseInput.update();
 		
+		
 		glfwSwapBuffers(window);
+		
 		
 		glfwPollEvents();
 	}
