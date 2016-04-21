@@ -1,6 +1,6 @@
 package com.colbyclardy.game.graphics;
 
-import com.colbyclardy.game.tile.Tile;
+import com.colbyclardy.game.blocks.Block;
 
 public class Renderer {
 
@@ -9,7 +9,7 @@ public class Renderer {
 		
 	}
 	
-	public void submit(Tile tile)
+	public void submit(Block tile)
 	{
 		
 	}

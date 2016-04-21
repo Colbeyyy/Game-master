@@ -1,4 +1,4 @@
-package com.colbyclardy.game.tile;
+package com.colbyclardy.game.blocks;
 
 import com.colbyclardy.game.debug.Debug;
 import com.colbyclardy.game.graphics.Shader;
@@ -7,7 +7,7 @@ import com.colbyclardy.game.graphics.VertexArray;
 import com.colbyclardy.game.math.Matrix4f;
 import com.colbyclardy.game.math.Vector3f;
 
-public class Tile {
+public class Block {
 
 	public Vector3f position = new Vector3f();
 	public VertexArray mesh;
@@ -17,7 +17,7 @@ public class Tile {
 	
 	public float SIZE = 1;
 	
-	public Tile()
+	public Block()
 	{
 		float[] vertices = new float[] {
 				-0.5f, -0.5f, 0.5f,//VO - 0
@@ -96,7 +96,7 @@ public class Tile {
 		rotation = new Vector3f();
 	}
 	
-	public Tile(Vector3f position)
+	public Block(Vector3f position)
 	{
 		float[] vertices = new float[] {
 				-SIZE / 2.0f, -SIZE / 2.0f, 0.2f,

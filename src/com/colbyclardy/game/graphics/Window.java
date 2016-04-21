@@ -107,7 +107,7 @@ public class Window {
 			System.out.println("OpenGL Error");
 		}
 		
-		if(Keyboard.isKeyDown(GLFW_KEY_F3))
+		if(Keyboard.isKeyDown(GLFW_KEY_F3) || Keyboard.isKeyDown(GLFW_KEY_ESCAPE))
 		{
 			if(!debugButton)
 			{

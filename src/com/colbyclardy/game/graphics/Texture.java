@@ -31,8 +31,9 @@ public class Texture {
 	
 	//tiles
 	public static Texture grass = new Texture("res/textures/tiles/grass.png");
-	public static Texture grass2 = new Texture("res/textures/tiles/grass2.png");
+	//public static Texture grass2 = new Texture("res/textures/spritesheet/spritesheet1.png");
 	public static Texture dirt = new Texture("res/textures/tiles/dirt.png");
+	public static Texture grass2 = new Texture(Spritesheet.sheet1, 16, 0, 0);
 	
 	public Texture(String path) {
 		texture = loadFromFile(path);
@@ -42,30 +43,23 @@ public class Texture {
 	{
 		this.x = x;
 		this.y = y;
-		texture = loadFromSpriteSheet(sheet, size);
-		System.out.println("Size:" + size);
+		texture = loadFromSpriteSheet(sheet, size, x, y);
 	}
 	
-	private int loadFromSpriteSheet(Spritesheet sheet, int size)
+	private int loadFromSpriteSheet(Spritesheet sheet, int size, int xo, int yo)
 	{
-		pixels = new int[size * size];
-		
-		System.out.println("Pixels length: " + pixels.length);
-		
-		for(int y = 0; y < size; y++){
-			for(int x = 0; x < size; x++){
-				pixels[x + y * size] = sheet.pixels[(x + this.x) + (y + this.y) * size];
-				
-				System.out.println(sheet.pixels[(x + this.x) + (y + this.y) * size]);
-			}
+		pixels = null;
+		try {
+			BufferedImage image = ImageIO.read(new FileInputStream(sheet.path));
+			width = size;
+			height = size;
+			pixels = new int[width * height];
+			pixels = image.getRGB(xo * size, yo * size, width, height, null, 0, width);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
-		//sheet.image.getRGB(x * size, y * size, size, size, pixels, 0, size);
-		
-		for(int i = 0; i < pixels.length; i++)
-		{
-			System.out.println(pixels[i]);
-		}
+		//sheet.image.getRGB(x * size, y * size, size, size, pixels, 0, size
 		
 		
 		int[] data = new int[pixels.length];

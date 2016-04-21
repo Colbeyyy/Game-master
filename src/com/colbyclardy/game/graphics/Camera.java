@@ -76,6 +76,17 @@ public class Camera {
 			jumpButton = false;
 		}
 		
+		if(Keyboard.isKeyDown(GLFW_KEY_LEFT_SHIFT))
+		{
+			if(!inAir)
+				speed = 1.5f;
+		}
+		else
+		{
+			if(!inAir)
+				speed = 1;
+		}
+		
 		if(!Window.debug)
 		{
 			rotation.y += (float)MouseInput.getMouseMoveX() * 0.05f;
