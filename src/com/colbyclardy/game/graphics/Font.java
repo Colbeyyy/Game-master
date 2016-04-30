@@ -6,15 +6,18 @@ import com.colbyclardy.game.sprites.Spritesheet;
 
 public class Font {
 
-	private Texture[] letters;
+	private Texture[] characters;
 	private Vector3f position;
 	
 	public Font(Spritesheet sheet, Vector3f position)
 	{
-		letters = new Texture[26];
-		for(int i = 0; i < letters.length; i++)
+		characters = new Texture[16 * 16];
+		for(int y = 0; y < 16; y++)
 		{
-			letters[i] = new Texture(Spritesheet.sheet1, 8, i, 29);
+			for(int x= 0; x < 16; x++)
+			{
+				characters[x + y * 16] = new Texture(Spritesheet.fonts, 16, x, y);
+			}
 		}
 		this.position = position;
 	}
@@ -27,11 +30,15 @@ public class Font {
 		
 		for(int i = 0; i < input.length(); i++)
 		{
+			if(input.charAt(i) == ' ')
+			{
+				continue;
+			}
 			Shader.UI.enable();
 			Shader.UI.setUniformMat4f("ml_matrix", Matrix4f.translate(new Vector3f(position.x + (i * size), position.y, position.z)));
-			letters[(int)input.charAt(i) - 65].bind();
+			characters[(int)input.charAt(i) - 35].bind();
 			mesh.render();
-			letters[(int)input.charAt(i) - 65].unbind();
+			characters[(int)input.charAt(i) - 35].unbind();
 			Shader.UI.disable();
 			
 		}

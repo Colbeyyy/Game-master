@@ -37,12 +37,12 @@ public class Sprite {
 	}
 
 	public void render() {
-		Shader.ENTITY.enable();
-		Shader.ENTITY.setUniformMat4f("ml_matrix", Matrix4f.translate(position).multiply(Matrix4f.rotate(angle, new Vector3f(1, 0, 0))));
-		Shader.ENTITY.setUniform1f("alpha", 1);
+		Shader.BILLBOARD.enable();
+		Shader.BILLBOARD.setUniformMat4f("ml_matrix", Matrix4f.translate(position).multiply(Matrix4f.rotate(angle, new Vector3f(1, 0, 0))));
+		Shader.BILLBOARD.setUniform1f("alpha", 1);
 		texture.bind();
 		mesh.render();
-		Shader.ENTITY.disable();
+		Shader.BILLBOARD.disable();
 		
 		Debug.addDrawCall();
 	}

@@ -110,7 +110,7 @@ public class Window {
 		if(debug)
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			font.render("Paused", 0.1f);
+			font.render("Paused", 1f);
 			
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		}

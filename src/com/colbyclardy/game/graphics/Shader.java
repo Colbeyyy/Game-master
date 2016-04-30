@@ -15,6 +15,7 @@ public class Shader {
 	
 	public static Shader ENTITY;
 	public static Shader UI;
+	public static Shader BILLBOARD;
 	
 	private boolean enabled = false;
 	
@@ -28,6 +29,7 @@ public class Shader {
 	public static void loadAll() {
 		ENTITY = new Shader("shaders/entity.vert", "shaders/entity.frag");
 		UI = new Shader("shaders/ui.vert", "shaders/ui.frag");
+		BILLBOARD = new Shader("shaders/entity2.vert", "shaders/entity2.frag");
 	}
 	
 	public int getUniform(String name) {

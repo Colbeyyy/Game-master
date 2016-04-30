@@ -8,6 +8,7 @@ import com.colbyclardy.game.graphics.Texture;
 import com.colbyclardy.game.graphics.Window;
 import com.colbyclardy.game.math.Matrix4f;
 import com.colbyclardy.game.math.Vector3f;
+import com.colbyclardy.game.sprites.Sprite;
 import com.colbyclardy.game.sprites.Spritesheet;
 import com.colbyclardy.game.utils.Timer;
 
@@ -20,6 +21,7 @@ public class Game {
 	private Font font;
 	
 	private GrassBlock tiles[];
+	private Sprite sprite;
 	
 	public static float deltaTime;
 	
@@ -33,6 +35,7 @@ public class Game {
 		cam = new Camera();
 		timer = new Timer();
 		tiles = new GrassBlock[64 * 64];
+		sprite = new Sprite(5, Texture.dirt);
 		font = new Font(Spritesheet.sheet1, new Vector3f(-0.725f, 0.35f, 0));
 		
 		tile2.position = new Vector3f(5, 1, 5);
@@ -48,11 +51,12 @@ public class Game {
 		
 		Shader.loadAll();
 		
-		Matrix4f ortho = Matrix4f.orthographic(-20.0f, 20.0f, -20.0f * 9.0f / 16.0f, 20.0f * 9.0f / 16.0f, -1.0f, 1.0f);
+		Matrix4f ortho = Matrix4f.orthographic(-10.0f, 10.0f, -10.0f * 9.0f / 16.0f, 10.0f * 9.0f / 16.0f, -1.0f, 1.0f);
 		Matrix4f proj = Matrix4f.perspective(60, (float)window.getDimensions().x / window.getDimensions().y, 0.1f, 1000f);
 		
 		Shader.ENTITY.setUniformMat4f("pr_matrix", proj);
-		Shader.UI.setUniformMat4f("pr_matrix", proj);
+		Shader.UI.setUniformMat4f("pr_matrix", ortho);
+		Shader.BILLBOARD.setUniformMat4f("pr_matrix", proj);
 	}
 
 	public void run() {
@@ -80,17 +84,12 @@ public class Game {
 			
 			tile.position = new Vector3f(x,0,z);
 			tile.render();
-			//font.render("FPS" + fps, 0.02f);
+			//sprite.render();
+			font.render("FPS: " + fps, .4f);
 			
 			cam.update();
 			window.update();
-			if(timer.elapsed() - timers > 1f)
-			{
-				timers += 1f;
-				fps = frames;
-				frames = 0;
-			}
-			frames++;
+			fps = (int)(1 / timer.elapsed());
 			
 		}
 	}
