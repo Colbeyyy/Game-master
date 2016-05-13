@@ -1,6 +1,7 @@
 package com.colbyclardy.game;
 
 import com.colbyclardy.game.blocks.GrassBlock;
+import com.colbyclardy.game.debug.Debug;
 import com.colbyclardy.game.graphics.Camera;
 import com.colbyclardy.game.graphics.Font;
 import com.colbyclardy.game.graphics.Shader;
@@ -80,7 +81,6 @@ public class Game {
 			//Debug.Print(timer.deltaTime + ", " + deltaTime);
 			float x = Math.round(cam.position.x);
 			float z = Math.round(cam.position.z);	
-			
 			
 			tile.position = new Vector3f(x,0,z);
 			tile.render();

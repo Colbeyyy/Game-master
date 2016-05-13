@@ -40,7 +40,7 @@ public class Quaternion {
 		if(x < 0.0000001f)
 			return new Vector3f(1, 0, 0);
 		float x2 = x * x;
-		return new Vector3f(x, y, z).divideF(x2);
+		return new Vector3f(x, y, z).divide(x2);
 	}
 	
 	public Vector3f toEulerAngles()

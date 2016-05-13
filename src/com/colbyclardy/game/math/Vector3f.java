@@ -44,7 +44,7 @@ public class Vector3f {
 		this.z -= other.z;
 	}
 	
-	public Vector3f multiplyF(float f)
+	public Vector3f multiply(float f)
 	{
 		this.x *= f;
 		this.y *= f;
@@ -53,7 +53,7 @@ public class Vector3f {
 		return this;
 	}
 	
-	public Vector3f divideF(float f)
+	public Vector3f divide(float f)
 	{
 		return new Vector3f(
 				x / f,

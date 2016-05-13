@@ -89,7 +89,43 @@ public class Matrix4f {
 		return result;
 	}
 	
-	public Vector4f multiply4f(Vector4f vec)
+	public static Matrix4f rotate(Quaternion quat)
+	{
+		Matrix4f result = Matrix4f.identity();
+
+		float qx, qy, qz, qw, qx2, qy2, qz2, qxqx2, qyqy2, qzqz2, qxqy2, qyqz2, qzqw2, qxqz2, qyqw2, qxqw2;
+		qx = quat.x;
+		qy = quat.y;
+		qz = quat.z;
+		qw = quat.w;
+		qx2 = (qx + qx);
+		qy2 = (qy + qy);
+		qz2 = (qz + qz);
+		qxqx2 = (qx * qx2);
+		qxqy2 = (qx * qy2);
+		qxqz2 = (qx * qz2);
+		qxqw2 = (qw * qx2);
+		qyqy2 = (qy * qy2);
+		qyqz2 = (qy * qz2);
+		qyqw2 = (qw * qy2);
+		qzqz2 = (qz * qz2);
+		qzqw2 = (qw * qz2);
+		
+		result.setRow(0, new Vector4f(((1.0f - qyqy2) - qzqz2), (qxqy2 - qzqw2), (qxqz2 + qyqw2), 0.0f));
+		result.setRow(1, new Vector4f((qxqy2 + qzqw2), ((1.0f - qxqx2) - qzqz2), (qyqz2 - qxqw2), 0.0f));
+		result.setRow(2, new Vector4f((qxqz2 - qyqw2), (qyqz2 + qxqw2), ((1.0f - qxqx2) - qyqy2), 0.0f));
+		return result;
+	}
+	
+	public void setRow(int row, Vector4f other)
+	{
+		elements[0 + row * 4] = other.x;
+		elements[1 + row * 4] = other.y;
+		elements[2 + row * 4] = other.z;
+		elements[3 + row * 4] = other.w;
+	}
+	
+	public Vector4f multiply(Vector4f vec)
 	{
 		Vector4f result = new Vector4f();
 		
@@ -267,7 +303,24 @@ public class Matrix4f {
 		return result;
 	}
 	
+	public Matrix4f scale(Vector3f scale)
+	{
+		Matrix4f result = identity();
+		result.elements[0 + 0 * 4] = scale.x;
+		result.elements[1 + 1 * 4] = scale.y;
+		result.elements[2 + 2 * 4] = scale.z;
+		
+		return result;
+	}
+	
 	public FloatBuffer toFloatBuffer() {
 		return BufferUtils.createFloatBuffer(elements);
+	}
+	
+	public String toString()
+	{
+		String result = "lol";
+	
+		return result;
 	}
 }
