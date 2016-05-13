@@ -1,8 +1,16 @@
-package com.colbyclardy.game.graphics;
+package com.colbyclardy.game.graphics.renderer;
 
 public class Renderer {
-
+	
+	
+	
+	
 	public Renderer()
+	{
+		
+	}
+	
+	public void begin()
 	{
 		
 	}
@@ -16,5 +24,11 @@ public class Renderer {
 	{
 		
 	}
+	
+	public void end()
+	{
+		
+	}
+	
 	
 }

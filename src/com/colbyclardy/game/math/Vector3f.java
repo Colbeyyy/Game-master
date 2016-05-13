@@ -51,7 +51,15 @@ public class Vector3f {
 		this.z *= f;
 		
 		return this;
-		
+	}
+	
+	public Vector3f divideF(float f)
+	{
+		return new Vector3f(
+				x / f,
+				y / f,
+				z / f
+				);
 	}
 	
 }

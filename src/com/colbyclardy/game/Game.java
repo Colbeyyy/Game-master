@@ -67,9 +67,9 @@ public class Game {
 			timer.reset();
 			//tile.update();
 			window.clear();
-			for(int y = 0; y < 32; y++)
+			for(int y = 0; y < 16; y++)
 			{
-				for(int x = 0; x < 32; x++)
+				for(int x = 0; x < 16; x++)
 				{
 					tiles[x + y * 64].render();
 				}
@@ -85,7 +85,7 @@ public class Game {
 			tile.position = new Vector3f(x,0,z);
 			tile.render();
 			//sprite.render();
-			font.render("FPS: " + fps, .4f);
+			//font.render("FPS: " + fps, .4f);
 			
 			cam.update();
 			window.update();

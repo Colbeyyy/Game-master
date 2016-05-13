@@ -37,7 +37,7 @@ public class Texture {
 	public static void loadAll()
 	{
 		grass = new Texture("res/textures/tiles/grass.png");
-		dirt = new Texture(Spritesheet.sheet1, 16, 0, 0);
+		dirt = new Texture(Spritesheet.sheet1, 16, 1, 0);
 		grass2 = new Texture(Spritesheet.sheet1, 8, 0, 29);
 	}
 	
