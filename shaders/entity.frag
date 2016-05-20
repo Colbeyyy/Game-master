@@ -9,6 +9,7 @@ in DATA
 
 uniform sampler2D tex;
 uniform float alpha;
+uniform vec3 lightColor;
 
 
 void main()

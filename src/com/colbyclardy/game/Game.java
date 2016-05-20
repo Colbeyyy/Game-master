@@ -92,6 +92,13 @@ public class Game {
 			fps = (int)(1 / timer.elapsed());
 			
 		}
+		end();
+		
+	}
+	
+	private void end()
+	{
+		Shader.killAll();
 	}
 
 	public static void main(String args[]) {

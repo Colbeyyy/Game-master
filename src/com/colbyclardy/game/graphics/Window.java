@@ -80,6 +80,9 @@ public class Window {
 		//glfwSwapInterval(1);
 		GL.createCapabilities();
 		
+		//glEnable(GL_CULL_FACE);
+		//glCullFace(GL_BACK);
+		
 		glEnable(GL_DEPTH_TEST);
 		//glDepthFunc()
 		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -98,7 +101,7 @@ public class Window {
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			font.render("Paused", 1f);
 			
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		}
 		int error = glGetError();
 		if(error != GL_NO_ERROR)

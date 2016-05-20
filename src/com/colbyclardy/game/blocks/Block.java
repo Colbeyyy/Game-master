@@ -19,6 +19,8 @@ public class Block {
 	
 	public Block()
 	{
+		
+		
 		float[] vertices = new float[] {
 				-0.5f, -0.5f, 0.5f,//VO - 0
 			    0.5f, -0.5f, 0.5f,//V1 - 1
@@ -92,7 +94,9 @@ public class Block {
 				    1f, 0.0f,//3
 			};
 			
-		mesh = new VertexArray(vertices, indices, tcs);
+			
+			
+		mesh = new VertexArray(vertices, indices, tcs, null);
 		rotation = new Vector3f();
 	}
 	
@@ -119,7 +123,7 @@ public class Block {
 			
 		this.position = position;
 		
-		mesh = new VertexArray(vertices, indices, tcs);
+		mesh = new VertexArray(vertices, indices, tcs, null);
 		rotation = new Vector3f();
 	}
 	

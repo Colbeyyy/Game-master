@@ -29,7 +29,7 @@ public class Sprite {
 
 		float[] tcs = new float[] { 0, 1, 0, 0, 1, 0, 1, 1 };
 
-		return new VertexArray(vertices, indices, tcs);
+		return new VertexArray(vertices, indices, tcs, null);
 	}
 
 	public void update() {

@@ -8,7 +8,7 @@ import static org.lwjgl.opengl.GL30.*;
 import com.colbyclardy.game.utils.BufferUtils;
 
 public class VertexArray {
-	private int vao, vbo, ibo, tbo;
+	private int vao, vbo, ibo, tbo, nbo;
 	private int count;
 	
 	public static VertexArray fontMesh = new VertexArray(
@@ -29,7 +29,7 @@ public class VertexArray {
 	 				0, 0,
 	 				1, 0,
 	 				1, 1
-	 			}
+	 			}, null
 			
 			);
 	
@@ -42,7 +42,7 @@ public class VertexArray {
 
 		float[] tcs = new float[] { 0, 1, 0, 0, 1, 0, 1, 1 };
 		
-		return new VertexArray(vertices, indices, tcs);
+		return new VertexArray(vertices, indices, tcs, null);
 	}
 	
 	public VertexArray(int count) {
@@ -50,7 +50,7 @@ public class VertexArray {
 		vao = glGenVertexArrays();
 	}
 	
-	public VertexArray(float[] vertices, byte[] indices, float[] textureCoordinates) {
+	public VertexArray(float[] vertices, byte[] indices, float[] textureCoordinates, float[] normals) {
 		count = indices.length;
 		
 		vao = glGenVertexArrays();
@@ -71,6 +71,17 @@ public class VertexArray {
 		ibo = glGenBuffers();
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.createByteBuffer(indices), GL_STATIC_DRAW);
+		
+		
+		if(normals != null)
+		{
+			nbo = glGenBuffers();
+			glBindBuffer(GL_ARRAY_BUFFER, nbo);
+			glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(normals), GL_STATIC_DRAW);
+			glVertexAttribPointer(Shader.NCOORD_ATTRIB, 3, GL_FLOAT, false, 0, 0);
+			glEnableVertexAttribArray(Shader.TCOORD_ATTRIB);
+			
+		}
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -12,6 +12,7 @@ import com.colbyclardy.game.utils.ShaderUtils;
 public class Shader {
 	public static final int VERTEX_ATTRIB = 0;
 	public static final int TCOORD_ATTRIB = 1;
+	public static final int NCOORD_ATTRIB = 2;
 	
 	public static Shader ENTITY;
 	public static Shader UI;
@@ -30,6 +31,13 @@ public class Shader {
 		ENTITY = new Shader("shaders/entity.vert", "shaders/entity.frag");
 		UI = new Shader("shaders/ui.vert", "shaders/ui.frag");
 		BILLBOARD = new Shader("shaders/entity2.vert", "shaders/entity2.frag");
+	}
+	
+	public static void killAll()
+	{
+		ENTITY.disable();
+		UI.disable();
+		BILLBOARD.disable();
 	}
 	
 	public int getUniform(String name) {
